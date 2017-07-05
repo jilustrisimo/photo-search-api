@@ -20,6 +20,8 @@ gem 'puma', '~> 3.0'
 gem 'bcrypt', '~> 3.1.7'
 # Knock is Seamless JWT authentication for Rails API
 gem 'knock'
+# Validate e-mail addresses against RFC 2822 and RFC 3696
+gem 'validates_email_format_of'
  
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
