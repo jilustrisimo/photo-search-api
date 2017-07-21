@@ -9,9 +9,7 @@ class Api::V1::FavoritesController < ApplicationController
     @favorite = Favorite.new(favorite_params)
     @favorite.user_id = current_user.id
     if @favorite.save
-      render json: {
-        favorite: @favorite
-      }
+      render 'favorites/favorite.json.jbuilder', favorite: @favorite
     else
       render json: {
         errors: @favorite.errors
