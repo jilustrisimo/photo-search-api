@@ -154,5 +154,8 @@ DEPENDENCIES
   tzinfo-data
   validates_email_format_of
 
+RUBY VERSION
+   ruby 2.3.4p301
+
 BUNDLED WITH
    1.14.6
