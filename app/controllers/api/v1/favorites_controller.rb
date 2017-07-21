@@ -18,11 +18,20 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def update
-    
   end
 
   def destroy
-    
+    @favorite = Favorite.find(params[:id])
+    if @favorite.user_id == current_user.id
+      @favorite.destroy
+      render json: {
+        message: 'Successfully removed photo from your favorites'
+      }, status: 200
+    else
+      render json: {
+        errors: 'Action not permitted.'
+      }, status: 403
+    end
   end
 
   private
