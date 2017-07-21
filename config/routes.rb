@@ -6,7 +6,7 @@ Rails.application.routes.draw do
       resources :users, only: [:create]
 
       # /api/v1/favorites
-      resources :favorites, only: %I[create index update destroy]
+      resources :favorites, only: %I[create index destroy]
 
       # /api/v1/auth
       post '/auth', to: 'auth#login'
