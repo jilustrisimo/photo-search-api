@@ -2,7 +2,7 @@ class Api::V1::FavoritesController < ApplicationController
   before_action :authenticate_token!
 
   def index
-
+    render 'users/user_with_favorites.json.jbuilder', user: current_user
   end
 
   def create
