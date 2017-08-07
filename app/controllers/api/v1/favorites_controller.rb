@@ -1,13 +1,12 @@
 class Api::V1::FavoritesController < ApplicationController
-  before_action :authenticate_token!
+  # before_action :authenticate_token!
 
   def index
-    render 'users/user_with_favorites.json.jbuilder', user: current_user
+    render 'favorites/favorites.json.jbuilder', favorites: @favorites
   end
 
   def create
     @favorite = Favorite.new(favorite_params)
-    @favorite.user_id = current_user.id
     if @favorite.save
       render 'favorites/favorite.json.jbuilder', favorite: @favorite
     else
@@ -22,8 +21,7 @@ class Api::V1::FavoritesController < ApplicationController
 
   def destroy
     @favorite = Favorite.find(params[:id])
-    if @favorite.user_id == current_user.id
-      @favorite.destroy
+    if @favorite.destroy
       render json: {
         message: 'Successfully removed photo from your favorites'
       }, status: 200
