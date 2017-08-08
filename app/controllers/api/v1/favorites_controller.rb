@@ -1,6 +1,6 @@
 class Api::V1::FavoritesController < ApplicationController
   # before_action :authenticate_token!
-  before_create :limit_table_size
+  before_action :limit_table_size, only: :create
 
   def index
     @favorites = Favorite.all
@@ -41,7 +41,7 @@ class Api::V1::FavoritesController < ApplicationController
     end
 
     def limit_table_size
-      Favorite.first.destroy if Favorite.size > 20
+      Favorite.first.destroy if Favorite.count > 20
     end
 
 end
