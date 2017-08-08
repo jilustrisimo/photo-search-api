@@ -1,3 +1,3 @@
 json.favorite do
-  json.(@favorite, :id, :user_id, :remote_id, :image_url)
+  json.(@favorite, :id, :photographer, :image_url, :profile_url)
 end
