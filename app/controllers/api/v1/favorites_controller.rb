@@ -2,6 +2,7 @@ class Api::V1::FavoritesController < ApplicationController
   # before_action :authenticate_token!
 
   def index
+    @favorites = Favorite.all
     render 'favorites/favorites.json.jbuilder', favorites: @favorites
   end
 
