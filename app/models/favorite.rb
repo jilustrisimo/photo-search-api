@@ -1,5 +1,6 @@
 class Favorite < ApplicationRecord
   belongs_to :user
 
-  validates_presence_of :user_id, :remote_id, :image_url
+  validates_presence_of :photographer, :image_url, :profile_url
+  validate :image_url, :profile_url, uniqueness: :true
 end
