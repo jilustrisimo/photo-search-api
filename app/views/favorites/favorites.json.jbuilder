@@ -4,4 +4,5 @@ json.favorites @favorites do |fav|
   json.imageURL fav.image_url
   json.profileURL fav.profile_url
   json.remoteURL fav.remote_url
+  json.upVoteCount fav.upvote_count
 end

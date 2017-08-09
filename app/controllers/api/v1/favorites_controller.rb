@@ -9,6 +9,7 @@ class Api::V1::FavoritesController < ApplicationController
 
   def create
     @favorite = Favorite.new(favorite_params)
+    @favorite.upvote_count = 0
     if @favorite.save
       render 'favorites/favorite.json.jbuilder', favorite: @favorite
     else
@@ -19,6 +20,16 @@ class Api::V1::FavoritesController < ApplicationController
   end
 
   def update
+    @favorite = Favorite.find(params[:id])
+    @favorite.upvote_count += 1
+    if @favorite.save
+      @favorites = Favorite.order(id: :desc)
+      render 'favorites/favorites.json.jbuilder', favorite: @favorites
+    else
+      render json: {
+        errors: @favorite.errors.full_messages.join(' ')
+      }, status: 403
+    end
   end
 
   def destroy
