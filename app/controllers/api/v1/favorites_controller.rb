@@ -3,7 +3,7 @@ class Api::V1::FavoritesController < ApplicationController
   before_action :limit_table_size, only: :create
 
   def index
-    @favorites = Favorite.all
+    @favorites = Favorite.order(id: :desc)
     render 'favorites/favorites.json.jbuilder', favorites: @favorites
   end
 
@@ -13,8 +13,8 @@ class Api::V1::FavoritesController < ApplicationController
       render 'favorites/favorite.json.jbuilder', favorite: @favorite
     else
       render json: {
-        errors: @favorite.errors
-      }, status: 500
+        errors: @favorite.errors.full_messages.join(' ')
+      }, status: 403
     end
   end
 
@@ -37,7 +37,7 @@ class Api::V1::FavoritesController < ApplicationController
   private
 
     def favorite_params
-      params.require(:favorite).permit(:photographer, :image_url, :profile_url)
+      params.require(:favorite).permit(:photographer, :image_url, :profile_url, :remote_url)
     end
 
     def limit_table_size

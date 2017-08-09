@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170808154421) do
+ActiveRecord::Schema.define(version: 20170809013147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 20170808154421) do
     t.string   "remote_id"
     t.string   "photographer"
     t.string   "profile_url"
+    t.string   "remote_url"
     t.index ["user_id"], name: "index_favorites_on_user_id", using: :btree
   end
 
