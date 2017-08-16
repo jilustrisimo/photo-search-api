@@ -9,7 +9,6 @@ class Api::V1::FavoritesController < ApplicationController
 
   def create
     @favorite = Favorite.new(favorite_params)
-    @favorite.upvote_count = 0
     if @favorite.save
       render 'favorites/favorite.json.jbuilder', favorite: @favorite
     else
